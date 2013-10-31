@@ -1,0 +1,22 @@
+{
+  "name": "configMonitor",
+  "version": "1.0.0",
+  "author": {
+    "name": "kaicui"
+  },
+  "description": "配置文件管理器，利用js模块作为配置项，并可以监控配置项的变化",
+  "repository": {
+  },
+  "keywords": [
+  ],
+  "main": "monitor.js",
+  "directories": {
+  },
+  "engines": {
+    "node": ">= 0.8.x"
+  },
+  "dependencies": {
+      "chokidar":">=0.6.3"
+  },
+  "license": "apache 2.0"
+}
