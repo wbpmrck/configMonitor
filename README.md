@@ -17,14 +17,60 @@ let's say we have a dir like this:
 			|dirB
 				|b.js
 			|a.js
-
 ```
+a.js
 
 ```js
-var Interface = require('interface').Interface;
-var IHuman = new Interface('IHuman',['run','shout']);//done! now you have a Interface. it has two methods.
-//var IHuman = new Interface('IHuman','run');//this works too!
-//next step we can see what can it do.
+module.exports={
+    a:1222,
+    c:10,
+    b:{
+        d:2122,
+        e:{
+            f:[1,22123,332],
+            g:1
+        }
+    }
+}
+```
+
+b.js
+
+```js
+module.exports={
+    b1:1,
+    b2:{
+        b3:202
+    }
+}
+```
+let's use configMonitor to manager the two files:
+```js
+
+var Monitor = require('configMonitor').constructor;
+var path = require('path');
+var util = require('util');
+
+//construct a monitor. the param is the root dir of the config files
+var configMonitor = new Monitor(path.resolve(path.dirname(__filename),'./configs'));
+
+var configA = configMonitor.getConfig('a.js');
+var configB = configMonitor.getConfig('dirB/b.js');
+
+console.log('configA is %s',util.inspect(configA.data));
+console.log('configB is %s',util.inspect(configB.data));
+
+//when you update a.js,this callback will execute
+configA.on('change',function(property,newVal,oldValue){
+    console.log('configA property %s changed! from: %s to %s',property,oldValue,newVal);
+    console.log('configA is %s',util.inspect(configA.data));
+});
+
+//when you update b.js,this callback will execute
+configB.on('change',function(property,newVal,oldValue){
+    console.log('configB property %s changed! from: %s to %s',property,oldValue,newVal);
+    console.log('configB is %s',util.inspect(configB.data));
+});
 ```
 
 
