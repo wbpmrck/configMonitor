@@ -11,11 +11,14 @@ configMonitor is a simple library to manage configs in your application.It use .
 </ul>
 #Demo
 let's say we have a dir like this:
+
+```js
 	configs
 			|dirB
 				|b.js
 			|a.js
 
+```
 
 ```js
 var Interface = require('interface').Interface;
