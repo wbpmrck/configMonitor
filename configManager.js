@@ -63,10 +63,13 @@ ConfigManager.prototype.reload = function(){
                 }
                 //数组的比较
                 else if(item.constructor === Array){
-                    if(item.toString() !== target[i].toString()){
-                        //callback(name,newValue,oldValue)
-                        self.emit('change',prefix?[prefix,i].join('.'):i,target[i],item);
-                    }
+                    item.forEach(function(subItem,index){
+                        _compareObj(prefix?[prefix,i,index].join('.'):[i,index].join('.'),subItem,target[i][index]);
+                    });
+//                    if(item.toString() !== target[i].toString()){
+//                        //callback(name,newValue,oldValue)
+//                        self.emit('change',prefix?[prefix,i].join('.'):i,target[i],item);
+//                    }
                 }
                 //普通值的比较
                 else if(item != target[i]){

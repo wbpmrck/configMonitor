@@ -1,6 +1,6 @@
 {
   "name": "configMonitor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "kaicui"
   },
@@ -9,7 +9,7 @@
   },
   "keywords": [
   ],
-  "main": "monitor.js",
+  "main": "./monitor.js",
   "directories": {
   },
   "engines": {
