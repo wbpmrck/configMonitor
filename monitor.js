@@ -60,7 +60,7 @@ Monitor.prototype.init = function(){
             });
         }
         else{
-            self.fileAndConfigMap[_item] = new ConfigManager(self.fileOrDir);
+            self.fileAndConfigMap[self.fileOrDir] = new ConfigManager(self.fileOrDir);
         }
 };
 

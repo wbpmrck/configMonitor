@@ -1,6 +1,6 @@
 module.exports={
     a:1222,
-    c:10,
+    c:102,
     b:{
         d:2122,
         e:{
