@@ -84,6 +84,8 @@ ConfigManager.prototype.reload = function(){
     }
 
     _compareObj('',self.oldData,self.data);
+
+    self.emit('reload',self.data,self.oldData);
 };
 ConfigManager.prototype.init = function(){
     var self = this;//save the this ref
