@@ -55,27 +55,27 @@ ConfigManager.prototype.reload = function(){
     var _compareObj = function(prefix,source,target){
         try{
 
-            for(var i in source){
-                var item = source[i];
-                //如果内容是对象，则递归比较
-                if(typeof(item) ==='object' && item.constructor === Object){
+            //如果内容是对象，则递归比较
+            if(typeof(source) ==='object' && source.constructor === Object){
+                for(var i in source){
+                    var item = source[i];
                     _compareObj(prefix?[prefix,i].join('.'):i,item,target[i]);
                 }
-                //数组的比较
-                else if(item.constructor === Array){
-                    item.forEach(function(subItem,index){
-                        _compareObj(prefix?[prefix,i,index].join('.'):[i,index].join('.'),subItem,target[i][index]);
-                    });
+            }
+            //数组的比较
+            else if(source.constructor === Array){
+                source.forEach(function(subItem,index){
+                    _compareObj(prefix?[prefix,index].join('.'):index,subItem,target[index]);
+                });
 //                    if(item.toString() !== target[i].toString()){
 //                        //callback(name,newValue,oldValue)
 //                        self.emit('change',prefix?[prefix,i].join('.'):i,target[i],item);
 //                    }
-                }
-                //普通值的比较
-                else if(item != target[i]){
-                    //callback(name,newValue,oldValue)
-                    self.emit('change',prefix?[prefix,i].join('.'):i,target[i],item);
-                }
+            }
+            //普通值的比较
+            else if(source != target){
+                //callback(name,newValue,oldValue)
+                self.emit('change',prefix,target,source);
             }
         }
         catch(e){
